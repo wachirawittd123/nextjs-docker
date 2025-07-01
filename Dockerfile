@@ -1,21 +1,23 @@
-# Use official Node.js image
+# ใช้ node official image
 FROM node:20-alpine
 
-# Set working directory
+# สร้าง working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# copy package.json และ package-lock.json ก่อน เพื่อ cache layers
 COPY package*.json ./
+
+# install dependencies
 RUN npm install
 
-# Copy rest of the app
+# copy โค้ดที่เหลือ
 COPY . .
 
-# Build Next.js
+# build next.js
 RUN npm run build
 
-# Expose port
+# expose port
 EXPOSE 3000
 
-# Start app
-CMD ["npm", "start"]
+# start next.js
+CMD ["npm", "run", "start"]

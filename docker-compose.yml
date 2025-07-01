@@ -21,9 +21,6 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/test-docker
-    volumes:
-      - .:/app
-    command: npm run dev
 
 volumes:
   pgdata:
